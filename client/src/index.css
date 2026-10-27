@@ -1,0 +1,14 @@
+@tailwind base; @tailwind components; @tailwind utilities;
+@layer base {
+  body { @apply bg-white text-ink font-sans text-base; font-weight: 450; line-height: 1.4; }
+  h1, h2, h3, h4 { font-weight: 650; line-height: 1.1; }
+  :focus-visible { outline: 2px solid #141414; outline-offset: 2px; }
+}
+@layer components {
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-full bg-ink text-white font-semibold px-5 h-11 hover:bg-soft-ink disabled:opacity-50; }
+  .btn-outline { @apply inline-flex items-center justify-center gap-2 rounded-full bg-white text-ink font-semibold px-5 h-11 border border-hairline hover:bg-soft disabled:opacity-50; }
+  .btn-soft { @apply inline-flex items-center justify-center gap-2 rounded-full bg-soft text-ink font-semibold px-4 h-10 hover:bg-hairline; }
+  .input { @apply w-full rounded-2xl bg-field px-4 py-3 text-ink placeholder:text-muted; }
+  .card { @apply rounded-3xl border border-hairline-soft bg-white; }
+  .pill { @apply inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold; }
+}

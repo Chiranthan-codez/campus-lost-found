@@ -1,0 +1,12 @@
+{
+  "name": "campus-lost-found-root",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "server": "npm --prefix server run dev",
+    "client": "npm --prefix client run dev",
+    "seed": "npm --prefix server run seed",
+    "db": "npm --prefix server run db",
+    "install:all": "npm --prefix server install && npm --prefix client install"
+  }
+}
