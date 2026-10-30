@@ -3,7 +3,15 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App.jsx';
 import { AuthProvider } from './services/auth.jsx';
+import { ThemeProvider } from './services/theme.jsx';
 import './index.css';
+
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <BrowserRouter><AuthProvider><App /></AuthProvider></BrowserRouter>
+  <BrowserRouter>
+    <ThemeProvider>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </ThemeProvider>
+  </BrowserRouter>
 );

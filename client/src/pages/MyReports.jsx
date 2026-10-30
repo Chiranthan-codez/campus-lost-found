@@ -4,8 +4,10 @@ import api, { errMsg, fmtDate } from '../services/api';
 import StatusBadge from '../components/StatusBadge';
 import ClaimList from '../components/ClaimList';
 import Notice from '../components/Notice';
+import ItemPreviewModal from '../components/ItemPreviewModal';
 export default function MyReports() {
   const [items, setItems] = useState(null), [claims, setClaims] = useState(null), [err, setErr] = useState('');
+  const [previewItem, setPreviewItem] = useState(null);
   const load = () => {
     api.get('/items/mine').then(r => setItems(r.data)).catch(e => setErr(errMsg(e)));
     api.get('/claims/my').then(r => setClaims(r.data)).catch(e => setErr(errMsg(e)));
@@ -27,6 +29,7 @@ export default function MyReports() {
                 </div>
                 <div className="flex flex-wrap items-center gap-2">
                   <StatusBadge status={i.status} />
+                  <button className="btn-outline" onClick={() => setPreviewItem(i)}>Preview</button>
                   <Link to={`/items/${i._id}/edit`} className="btn-outline">Edit</Link>
                   <button className="btn-outline" onClick={() => del(i)}>Delete</button>
                 </div>
@@ -41,6 +44,9 @@ export default function MyReports() {
         <ul className="space-y-2">{claims.map(c => <li key={c._id} className="card p-4 flex flex-wrap justify-between gap-2">
           <Link to={`/items/${c.itemId?._id}`} className="font-semibold hover:underline">{c.itemId?.title || 'Deleted item'}</Link>
           <span className="pill bg-soft">{c.status.toLowerCase()}</span></li>)}</ul>
+      )}
+      {previewItem && (
+        <ItemPreviewModal item={previewItem} onClose={() => setPreviewItem(null)} />
       )}
     </>
   );

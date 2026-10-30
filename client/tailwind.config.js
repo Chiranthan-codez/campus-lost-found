@@ -1,7 +1,19 @@
 export default {
+  darkMode: 'class',
   content: ['./index.html', './src/**/*.{js,jsx}'],
-  theme: { extend: {
-    fontFamily: { sans: ['Inter', '-apple-system', 'Helvetica Neue', 'Arial', 'sans-serif'] },
-    colors: { ink: '#141414', 'soft-ink': '#262626', soft: '#f3f3f3', field: '#f0f0f0', hairline: '#e0e0e0', 'hairline-soft': '#f0f0f0', muted: '#707070' },
-  } },
+  theme: {
+    extend: {
+      fontFamily: { sans: ['Inter', '-apple-system', 'Helvetica Neue', 'Arial', 'sans-serif'] },
+      colors: {
+        ink: 'var(--color-ink)',
+        'soft-ink': 'var(--color-soft-ink)',
+        soft: 'var(--color-soft)',
+        field: 'var(--color-field)',
+        hairline: 'var(--color-hairline)',
+        'hairline-soft': 'var(--color-hairline-soft)',
+        muted: 'var(--color-muted)',
+        card: 'var(--color-card)',
+      },
+    },
+  },
 };

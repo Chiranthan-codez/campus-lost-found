@@ -5,6 +5,7 @@ module.exports = model('Item', new Schema({
   type: { type: String, enum: { values: ['LOST', 'FOUND'], message: 'Type must be LOST or FOUND' }, required: true },
   category: { type: String, enum: { values: CATEGORIES, message: 'Choose a valid category' }, required: true },
   description: { type: String, required: [true, 'Description is required'], trim: true, maxlength: 500 },
+  additionalDetails: { type: String, trim: true, maxlength: 1000 },
   location: { type: String, required: [true, 'Location is required'], trim: true },
   date: { type: Date, required: [true, 'Date is required'] },
   imageUrl: String,

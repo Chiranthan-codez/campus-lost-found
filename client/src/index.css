@@ -1,14 +1,105 @@
-@tailwind base; @tailwind components; @tailwind utilities;
-@layer base {
-  body { @apply bg-white text-ink font-sans text-base; font-weight: 450; line-height: 1.4; }
-  h1, h2, h3, h4 { font-weight: 650; line-height: 1.1; }
-  :focus-visible { outline: 2px solid #141414; outline-offset: 2px; }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-page-bg: #ffffff;
+  --color-ink: #141414;
+  --color-soft-ink: #262626;
+  --color-soft: #f3f3f3;
+  --color-field: #f0f0f0;
+  --color-card: #ffffff;
+  --color-hairline: #e0e0e0;
+  --color-hairline-soft: #f0f0f0;
+  --color-muted: #707070;
+  color-scheme: light;
 }
+
+.dark {
+  --color-page-bg: #0e1015;
+  --color-ink: #f1f3f7;
+  --color-soft-ink: #cfd4df;
+  --color-soft: #181c24;
+  --color-field: #1b1f28;
+  --color-card: #13161c;
+  --color-hairline: #2c3340;
+  --color-hairline-soft: #222733;
+  --color-muted: #8892a4;
+  color-scheme: dark;
+}
+
+@layer base {
+  html {
+    background-color: var(--color-page-bg);
+  }
+  body {
+    background-color: var(--color-page-bg);
+    color: var(--color-ink);
+    font-family: Inter, -apple-system, Helvetica Neue, Arial, sans-serif;
+    font-weight: 450;
+    line-height: 1.4;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  h1, h2, h3, h4 {
+    font-weight: 650;
+    line-height: 1.1;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 2px;
+  }
+}
+
 @layer components {
-  .btn { @apply inline-flex items-center justify-center gap-2 rounded-full bg-ink text-white font-semibold px-5 h-11 hover:bg-soft-ink disabled:opacity-50; }
-  .btn-outline { @apply inline-flex items-center justify-center gap-2 rounded-full bg-white text-ink font-semibold px-5 h-11 border border-hairline hover:bg-soft disabled:opacity-50; }
-  .btn-soft { @apply inline-flex items-center justify-center gap-2 rounded-full bg-soft text-ink font-semibold px-4 h-10 hover:bg-hairline; }
-  .input { @apply w-full rounded-2xl bg-field px-4 py-3 text-ink placeholder:text-muted; }
-  .card { @apply rounded-3xl border border-hairline-soft bg-white; }
-  .pill { @apply inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold; }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full font-semibold px-5 h-11 disabled:opacity-50 transition-colors duration-150;
+    background-color: var(--color-ink);
+    color: var(--color-page-bg);
+  }
+  .btn:hover:not(:disabled) {
+    opacity: 0.9;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-full font-semibold px-5 h-11 border border-hairline disabled:opacity-50 transition-colors duration-150;
+    background-color: transparent;
+    color: var(--color-ink);
+  }
+  .btn-outline:hover:not(:disabled) {
+    background-color: var(--color-soft);
+  }
+  .btn-soft {
+    @apply inline-flex items-center justify-center gap-2 rounded-full font-semibold px-4 h-10 transition-colors duration-150;
+    background-color: var(--color-soft);
+    color: var(--color-ink);
+  }
+  .btn-soft:hover:not(:disabled) {
+    background-color: var(--color-hairline);
+  }
+  .input {
+    @apply w-full rounded-2xl px-4 py-3 border border-transparent transition-colors duration-150;
+    background-color: var(--color-field);
+    color: var(--color-ink);
+  }
+  .input::placeholder {
+    color: var(--color-muted);
+  }
+  .input:focus {
+    border-color: var(--color-hairline);
+    outline: none;
+  }
+  .card {
+    @apply rounded-3xl border border-hairline-soft transition-colors duration-150;
+    background-color: var(--color-card);
+  }
+  .pill {
+    @apply inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
+}
+.animate-fadeIn {
+  animation: fadeIn 0.18s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }

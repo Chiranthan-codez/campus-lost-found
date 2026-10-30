@@ -8,7 +8,7 @@ const upload = multer({
   limits: { fileSize: 3 * 1024 * 1024 },
   fileFilter: (q, f, cb) => /^image\//.test(f.mimetype) ? cb(null, true) : cb(Object.assign(new Error('Only image files are allowed'), { status: 400 })),
 });
-const FIELDS = ['title', 'type', 'category', 'description', 'location', 'date'];
+const FIELDS = ['title', 'type', 'category', 'description', 'additionalDetails', 'location', 'date'];
 const esc = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 r.get('/', wrap(async (req, res) => {

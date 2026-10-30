@@ -33,9 +33,15 @@ export default function ItemDetail() {
       </div>
       <div>
         <Notice type="success">{ok}</Notice><Notice>{err}</Notice>
-        <div className="flex gap-2 mb-3"><span className="pill bg-ink text-white">{item.type === 'LOST' ? 'Lost' : 'Found'}</span><StatusBadge status={item.status} /></div>
+        <div className="flex gap-2 mb-3"><span className="pill bg-ink text-white dark:text-[#0e1015]">{item.type === 'LOST' ? 'Lost' : 'Found'}</span><StatusBadge status={item.status} /></div>
         <h1 className="text-4xl">{item.title}</h1>
         <p className="my-4 whitespace-pre-wrap">{item.description}</p>
+        {item.additionalDetails && (
+          <div className="my-4 p-4 rounded-2xl bg-soft border border-hairline-soft">
+            <h4 className="font-semibold text-sm uppercase tracking-wide text-muted mb-1">Additional Details & Identifying Features</h4>
+            <p className="whitespace-pre-wrap text-sm">{item.additionalDetails}</p>
+          </div>
+        )}
         <dl className="space-y-1">
           <div><dt className="inline font-semibold">Category: </dt><dd className="inline">{item.category}</dd></div>
           <div><dt className="inline font-semibold">Location: </dt><dd className="inline">{item.location}</dd></div>
